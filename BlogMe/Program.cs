@@ -1,4 +1,5 @@
 using BlogMe.Data;
+using BlogMe.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<BlogMeDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("BlogMeConnectionStrings")));
+
+builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+builder.Services.AddScoped<ITagRepository, TagRepository>();
 
 var app = builder.Build();
 
