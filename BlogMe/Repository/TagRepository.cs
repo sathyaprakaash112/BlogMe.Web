@@ -21,12 +21,21 @@ namespace BlogMe.Repository
 
         public Task<int> CountAsync()
         {
-            throw new NotImplementedException();
+            return blogMeDbContext.Tags.CountAsync();
         }
 
-        public Task<Tag> DeleteAsync(Guid Id)
+        public async Task<Tag?> DeleteAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            var existingTag = await blogMeDbContext.Tags.FindAsync(Id);
+
+            if (existingTag != null)
+            {
+                blogMeDbContext.Tags.Remove(existingTag);
+                await blogMeDbContext.SaveChangesAsync();
+                return existingTag;
+            }
+
+            return null;
         }
 
         public async Task<IEnumerable<Tag>> GetAllAsync()
@@ -34,14 +43,26 @@ namespace BlogMe.Repository
             return await blogMeDbContext.Tags.ToListAsync();
         }
 
-        public async Task<Tag> GetAsync(Guid Id)
+        public async Task<Tag?> GetAsync(Guid Id)
         {
             return await blogMeDbContext.Tags.FirstOrDefaultAsync(x => x.Id == Id);
         }
 
-        public Task<Tag> UpdateAsync(Tag tag)
+        public async Task<Tag?> UpdateAsync(Tag tag)
         {
-            throw new NotImplementedException();
+            var existingTag = await blogMeDbContext.Tags.FindAsync(tag.Id);
+
+            if (existingTag != null)
+            {
+                existingTag.Name = tag.Name;
+                existingTag.DisplayName = tag.DisplayName;
+
+                await blogMeDbContext.SaveChangesAsync();
+
+                return existingTag;
+            }
+
+            return null;
         }
     }
 }

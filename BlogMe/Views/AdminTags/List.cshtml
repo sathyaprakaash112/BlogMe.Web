@@ -1,0 +1,106 @@
+﻿@model List<BlogMe.Models.Domain.Tag>
+@{
+}
+
+
+<div class="py-2 rounded-3">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h1>List of Tags</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>
+                        Name
+                        <span>
+                            <span>
+                                <a class="btn btn-light"
+                                asp-controller="AdminTags"
+                                asp-action="List"
+                                asp-route-sortBy="Name"
+                                asp-route-sortDirection="Asc"
+                                asp-route-searchQuery="@ViewBag.SearchQuery">
+@*                                     <i class="bi bi-arrow-up"></i>
+ *@                                </a>
+                            </span>
+                            <span>
+                                <a class="btn btn-light"
+                                asp-controller="AdminTags"
+                                asp-action="List"
+                                asp-route-sortBy="Name"
+                                asp-route-sortDirection="Desc"
+                                asp-route-searchQuery="@ViewBag.SearchQuery">
+@*                                     <i class="bi bi-arrow-down"></i>
+ *@                                </a>
+                            </span>
+                        </span>
+
+                    </th>
+                    <th>
+                        Display Name
+                        <span>
+                            <span>
+                                <a class="btn btn-light"
+                                asp-controller="AdminTags"
+                                asp-action="List"
+                                asp-route-sortBy="DisplayName"
+                                asp-route-sortDirection="Asc"
+                                asp-route-searchQuery="@ViewBag.SearchQuery">
+@*                                     <i class="bi bi-arrow-up"></i>
+ *@                                </a>
+                            </span>
+                            <span>
+                                <a class="btn btn-light"
+                                asp-controller="AdminTags"
+                                asp-action="List"
+                                asp-route-sortBy="DisplayName"
+                                asp-route-sortDirection="Desc"
+                                asp-route-searchQuery="@ViewBag.SearchQuery">
+@*                                     <i class="bi bi-arrow-down"></i>
+ *@                                </a>
+                            </span>
+                        </span>
+                    </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tag in Model)
+                {
+                    <tr>
+                        <td>@tag.Id</td>
+                        <td>@tag.Name</td>
+                        <td>@tag.DisplayName</td>
+                        <td>
+                            <a asp-area="" asp-controller="AdminTags"
+                               asp-action="Edit"
+                               asp-route-id="@tag.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="py-2 rounded-3">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center">
+                        <h4>No tags found</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+

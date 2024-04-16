@@ -1,0 +1,42 @@
+﻿@model BlogMe.Models.ViewModels.EditTagRequest
+@{
+}
+
+
+<div class="py-2 rounded-3">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h1>Edit an Existing Tag</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container col-6 py-5">
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Id</label>
+            <input type="text" id="id" class="form-control" asp-for="Id" readonly />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" asp-for="Name" id="name" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">DisplayName</label>
+            <input type="text" class="form-control" asp-for="DisplayName" id="displayName" />
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">Submit</button>
+            <button class="btn btn-danger ms-2" type="submit"
+            asp-area=""
+            asp-controller="AdminTags"
+            asp-action="Delete">
+            Delete
+            </button>
+
+        </div>
+    </form>
+</div>

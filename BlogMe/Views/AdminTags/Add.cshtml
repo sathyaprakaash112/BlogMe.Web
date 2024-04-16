@@ -1,0 +1,31 @@
+﻿@model BlogMe.Models.ViewModels.AddTagRequest
+@{
+}
+
+
+<div class="py-2 rounded-3">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h1>Add a New Tag</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container col-6 py-5">
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" asp-for="Name" id="name"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">DisplayName</label>
+            <input type="text" class="form-control" asp-for="DisplayName" id="displayName" />
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </div>
+    </form>
+</div>

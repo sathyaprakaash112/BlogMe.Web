@@ -8,11 +8,11 @@ namespace BlogMe.Repository
 
         Task<BlogPost> GetBlogPostAsync(Guid Id);
 
-        Task<BlogPost> GetByUrlHandleAsync(Guid Id);
+        Task<BlogPost> GetByUrlHandleAsync(string urlHandle);
 
         Task<BlogPost> AddAsync(BlogPost blogPost);
 
         Task<BlogPost> UpdateAsync(BlogPost blogPost);
-        Task<BlogPost> DeleteAsync(Guid Id);
+        Task<BlogPost?> DeleteAsync(Guid Id);
     }
 }
