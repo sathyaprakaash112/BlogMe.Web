@@ -1,6 +1,7 @@
 ﻿using BlogMe.Models.Domain;
 using BlogMe.Models.ViewModels;
 using BlogMe.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogMe.Controllers
@@ -14,6 +15,8 @@ namespace BlogMe.Controllers
             this.tagRepository = tagRepository;
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
         public IActionResult Add()
         {
             return View();
