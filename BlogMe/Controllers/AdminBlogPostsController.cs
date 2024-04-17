@@ -1,11 +1,13 @@
 ﻿using BlogMe.Models.Domain;
 using BlogMe.Models.ViewModels;
 using BlogMe.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BlogMe.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminBlogPostsController : Controller
     {
         private readonly IBlogPostRepository blogPostRepository;

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogMe.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminTagsController : Controller
     {
         private readonly ITagRepository tagRepository;
@@ -15,16 +16,16 @@ namespace BlogMe.Controllers
             this.tagRepository = tagRepository;
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Add(AddTagRequest addTagRequest)
         {
-            
+
             var domainModel = new Tag
             {
                 Name = addTagRequest.Name,
@@ -39,7 +40,7 @@ namespace BlogMe.Controllers
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            var tags =  await tagRepository.GetAllAsync();
+            var tags = await tagRepository.GetAllAsync();
 
             return View(tags);
         }
@@ -87,11 +88,12 @@ namespace BlogMe.Controllers
 
             return RedirectToAction("Edit", new { id = editTagRequest.Id });
         }
+
         [HttpPost]
         public async Task<IActionResult> Delete(EditTagRequest editTagRequest)
         {
             var existingTag = await tagRepository.DeleteAsync(editTagRequest.Id);
-            if(existingTag != null)
+            if (existingTag != null)
             {
                 return RedirectToAction("List");
             }

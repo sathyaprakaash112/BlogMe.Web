@@ -46,22 +46,28 @@ namespace BlogMe.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
             var signInResult = await signInManager.PasswordSignInAsync(loginViewModel.Username, loginViewModel.Password,false,false);
 
             if(signInResult != null && signInResult.Succeeded) {
+                if (!string.IsNullOrWhiteSpace(loginViewModel.ReturnUrl))
+                {
+                    return RedirectToPage(loginViewModel.ReturnUrl);
+                }
                 return RedirectToAction("Index", "Home");
             }
             //show errors 
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Login(string ReturnUrl)
+        {
+            var model = new LoginViewModel { ReturnUrl = ReturnUrl };
+
+            return View(model);
         }
 
         [HttpGet]
@@ -71,5 +77,12 @@ namespace BlogMe.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
     }
 }
