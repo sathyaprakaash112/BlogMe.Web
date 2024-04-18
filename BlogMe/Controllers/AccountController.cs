@@ -54,7 +54,7 @@ namespace BlogMe.Controllers
             if(signInResult != null && signInResult.Succeeded) {
                 if (!string.IsNullOrWhiteSpace(loginViewModel.ReturnUrl))
                 {
-                    return RedirectToPage(loginViewModel.ReturnUrl);
+                    return Redirect(loginViewModel.ReturnUrl);
                 }
                 return RedirectToAction("Index", "Home");
             }
