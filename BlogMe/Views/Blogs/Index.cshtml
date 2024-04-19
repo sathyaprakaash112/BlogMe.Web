@@ -1,4 +1,4 @@
-﻿@model BlogMe.Models.Domain.BlogPost
+﻿@model BlogMe.Models.ViewModels.BlogDetailsViewModel
 
 @{
     ViewData["Title"] = Model.PageTitle;
@@ -16,8 +16,8 @@
                     <span class="text-secondary">@Model.PublishedDate.ToShortDateString()</span>
                 </div>
 
-               @*  <div class="mb-3">
-                    @if (signInManager.IsSignedIn(User))
+                <div class="mb-3">
+                    @* @if (signInManager.IsSignedIn(User))
                     {
                         if (Model.Liked)
                         {
@@ -32,9 +32,9 @@
                             </a>
                         }
                     }
-
+ *@
                     <span id="totalLikes">@Model.TotalLikes</span> likes
-                </div> *@
+                </div>
 
                 <div class="mb-3 d-flex">
                     @foreach (var tag in Model.Tags)
