@@ -34,7 +34,7 @@ namespace BlogMe.Controllers
 
             await tagRepository.AddAsync(domainModel);
 
-            return View(addTagRequest);
+            return RedirectToAction("List");
         }
 
         [HttpGet]

@@ -11,6 +11,7 @@ namespace BlogMe.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ITagRepository tagRepository;
         private readonly IBlogPostRepository blogPostRepository;
+        private readonly IBlogPostLikeRepository blogPostLikeRepository;
 
         public HomeController(ILogger<HomeController> logger, ITagRepository tagRepository, IBlogPostRepository blogPostRepository)
         {
@@ -24,6 +25,7 @@ namespace BlogMe.Controllers
             var tags = await tagRepository.GetAllAsync();
             var blogPosts = await blogPostRepository.GetAllAsync();
 
+            
             var model = new HomeViewModel
             {
                 BlogPosts = blogPosts,

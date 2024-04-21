@@ -13,13 +13,13 @@
             <p class="lead">
                 BlogMe is the home to blogs covering a vast range of
                 topics like cooking, programming, beauty, fashion, lifestyle etc.
-                Want to read the latest articles posted by our team? Join the bloggie app and
+                Want to read the latest articles posted by our team? Join the blogMe app and
                 get weekly blogs in your email!
             </p>
         </div>
 
         <div class="col-12 col-lg-6">
-            <img src="https://images.pexels.com/photos/5052875/pexels-photo-5052875.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            <img src="https://cdn.pixabay.com/photo/2017/04/05/01/16/food-2203732_1280.jpg"
                  alt="Bloggie - Dev blogs"
                  class="d-block mx-lg-auto img-fluid" width="450" />
         </div>
@@ -28,7 +28,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-6 d-flex">
+        <div class="col-8 d-flex mb-2">
             @if (Model != null && Model.Tags.Any())
             {
                 foreach (var tag in Model.Tags)
@@ -61,11 +61,6 @@
                             <br />
                             Published Date: @blogPost.PublishedDate.ToShortDateString()
                         </p>
-
-                        <div class="mb-3">
-                            <i class="bi bi-suit-heart"></i>
-                            99 Likes
-                        </div>
 
                         <p class="mb-4">
                             @foreach (var tag in blogPost.Tags)
